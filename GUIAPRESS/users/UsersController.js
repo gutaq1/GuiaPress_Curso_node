@@ -61,15 +61,19 @@ router.post("/authenticate", (req, res)=> {
                         id: user.id,
                         email: user.email
                     }
-                    res.json(req.session.user);
-                }else{
-                    res.redirect("/login");
+                    res.redirect("/admin/articles");
                 }
             }else{
                 res.redirect("/login");
             }
         });
 
+});
+
+// Rota logout
+router.get("/logout", (req, res) => {
+    req.session.user = undefined;
+    res.redirect("/");
 });
 
 module.exports = router;
